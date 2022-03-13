@@ -1,5 +1,6 @@
-import { Box, Paper } from "@mui/material";
+import { Box } from "@mui/material";
 import CategoryContainer from "./components/CategoryContainer";
+import Section from "./components/Section";
 
 
 export default function Home() {
@@ -9,13 +10,10 @@ export default function Home() {
       display: "flex",
       justifyContent: "center"
     }}>
-      <Paper sx={{
-        maxWidth: "95%",
-        width: "1080px",
-        margin: "1rem"
-      }}>
-        <CategoryContainer />
-      </Paper>
+      <Section
+        headerText={"What is in your portfolio?"}
+        subHeaderText={"Define the categories you separate your investments into."}
+        bodyComponent={<CategoryContainer />} />
     </Box>
   )
 }

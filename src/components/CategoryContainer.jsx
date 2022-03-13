@@ -6,7 +6,46 @@ import { v4 as uuidv4 } from "uuid";
 
 export default function CategoryContainer() {
 
-  const [categories, setCategories] = useState(new Map());
+  const [categories, setCategories] = useState(new Map([
+    ["1", {
+      name: "US",
+      isSuper: false,
+      allocations: new Map()
+    }],
+    ["2", {
+      name: "Canada",
+      isSuper: false,
+      allocations: new Map()
+    }],
+    ["3", {
+      name: "International",
+      isSuper: false,
+      allocations: new Map()
+    }],
+    ["4", {
+      name: "Total Market ETF",
+      isSuper: true,
+      allocations: new Map([
+        ["11", {
+          categoryId: "1",
+          percent: 40
+        }],
+        ["22", {
+          categoryId: "2",
+          percent: 30
+        }],
+        ["33", {
+          categoryId: "3",
+          percent: 30
+        }],
+      ])
+    }],
+    ["5", {
+      name: "Bonds",
+      isSuper: false,
+      allocations: new Map()
+    }],
+  ]));
 
   const addCategory = () => {
     const _categories = new Map(categories);
@@ -108,10 +147,11 @@ export default function CategoryContainer() {
       display: "flex",
       justifyContent: "flex-start",
       alignItems: "flex-start",
-      flexDirection: "column"
+      flexDirection: "column",
+      width: "100%"
     }}>
       <Button
-        sx={{ margin: "1rem", width: "fit-content" }}
+        sx={{ margin: "1rem 0", width: "fit-content" }}
         variant="contained"
         onClick={addCategory}>
         Add Category

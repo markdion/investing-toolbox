@@ -20,7 +20,7 @@ export default function Category({
       justifyContent: "flex-start",
       flexDirection: "column",
       alignItems: "flex-start",
-      margin: "1rem"
+      margin: "1rem 0"
     }}>
       <Box sx={{
         display: "flex",
@@ -52,16 +52,16 @@ export default function Category({
             }
             label={"Contains other categories"}
           />
+          {category.isSuper &&
+            <Button
+              sx={{ margin: "1rem", width: "fit-content" }}
+              variant="outlined"
+              onClick={(event) => {
+                addCategoryAllocation(categoryId);
+              }}>
+              Add Allocation
+            </Button>}
         </Box>
-        {category.isSuper &&
-          <Button
-            sx={{ margin: "1rem", width: "fit-content" }}
-            variant="outlined"
-            onClick={(event) => {
-              addCategoryAllocation(categoryId);
-            }}>
-            Add Allocation
-          </Button>}
         <IconButton
           sx={{ margin: "1rem" }}
           onClick={(event) => {
@@ -75,7 +75,8 @@ export default function Category({
         justifyContent: "flex-start",
         alignItems: "center",
         margin: "1rem",
-        flexWrap: "wrap"
+        flexWrap: "wrap",
+        gap: "1rem"
       }}>
         {category.isSuper && category.allocations &&
           Array.from(category.allocations).map(([allocationId, allocation], index) => (
