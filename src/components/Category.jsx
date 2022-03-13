@@ -70,16 +70,16 @@ export default function Category({
           <Clear/>
         </IconButton>
       </Box>
-      <Box sx={{
-        display: "flex",
-        justifyContent: "flex-start",
-        alignItems: "center",
-        margin: "1rem",
-        flexWrap: "wrap",
-        gap: "1rem"
-      }}>
-        {category.isSuper && category.allocations &&
-          Array.from(category.allocations).map(([allocationId, allocation], index) => (
+      {category.isSuper && category.allocations && category.allocations.size > 0 &&
+        <Box sx={{
+          display: "flex",
+          justifyContent: "flex-start",
+          alignItems: "center",
+          margin: "1rem",
+          flexWrap: "wrap",
+          gap: "1rem"
+        }}>
+          {Array.from(category.allocations).map(([allocationId, allocation], index) => (
             <Allocation
               key={allocationId}
               availableCategories={allCategories}
@@ -94,7 +94,7 @@ export default function Category({
               }}
             />
           ))}
-        </Box>
+        </Box>}
     </Card>
   );
 }
