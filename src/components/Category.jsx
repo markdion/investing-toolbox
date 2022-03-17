@@ -1,18 +1,14 @@
 import { Clear } from "@mui/icons-material";
 import { Box, Button, Card, FormControlLabel, IconButton, Switch, TextField } from "@mui/material";
+import { useRootReducer } from "../providers/RootProvider";
 import Allocation from "./Allocation";
 
 export default function Category({
   category,
   categoryId,
-  onChangeName,
-  onToggleSuper,
-  deleteCategory,
-  addCategoryAllocation,
-  onChangeAllocationCategorySelected,
-  onChangeAllocationValue,
-  onDeleteAllocation,
   allCategories }) {
+
+  const { state, dispatch } = useRootReducer();
 
   return (
     <Card sx={{
@@ -38,7 +34,7 @@ export default function Category({
             label="Name"
             value={category.name}
             onChange={(event) => {
-              onChangeName(categoryId, event.target.value);
+              dispatch({ type: "changeCategoryName", id: categoryId, name: event.target.value });
             }}
           />
           <FormControlLabel
@@ -47,7 +43,7 @@ export default function Category({
               <Switch
                 checked={category.isSuper}
                 onChange={(event) => {
-                  onToggleSuper(categoryId, event.target.checked);
+                  dispatch({ type: "toggleSuper", id: categoryId, isSuper: event.target.checked });
                 }} />
             }
             label={"Contains other categories"}
@@ -57,7 +53,7 @@ export default function Category({
               sx={{ margin: "1rem", width: "fit-content" }}
               variant="outlined"
               onClick={(event) => {
-                addCategoryAllocation(categoryId);
+                dispatch({ type: "addCategoryAllocation", id: categoryId });
               }}>
               Add Allocation
             </Button>}
@@ -65,7 +61,7 @@ export default function Category({
         <IconButton
           sx={{ margin: "1rem" }}
           onClick={(event) => {
-            deleteCategory(categoryId);
+            dispatch({ type: "deleteCategory", id: categoryId });
           }}>
           <Clear/>
         </IconButton>
@@ -86,11 +82,13 @@ export default function Category({
               selectedCategory={allocation.categoryId}
               value={allocation.percent}
               onChangeCategorySelected={(event) => {
-                onChangeAllocationCategorySelected(categoryId, allocationId, event.target.value);
+                dispatch({ type: "changeAllocationCategory", categoryId, allocationId, selectedCategoryId: event.target.value })
               }}
-              onChangeValue={onChangeAllocationValue}
+              onChangeValue={(event) => {
+                dispatch({ type: "changeAllocationValue", categoryId, allocationId, value: event.target.value });
+              }}
               onDelete={(event) => {
-                onDeleteAllocation(categoryId, allocationId);
+                dispatch({ type: "deleteCategoryAllocation", categoryId, allocationId })
               }}
             />
           ))}
