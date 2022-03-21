@@ -62,10 +62,15 @@ function categoriesReducer(state, action) {
   switch (action.type) {
     case 'addCategory': {
       const _state = {...state};
-      _state.categories.set(uuidv4(), {
+      const _categoryId = uuidv4();
+      _state.categories.set(_categoryId, {
         name: "",
         isSuper: false,
         allocations: new Map()
+      });
+      const _accounts = _state.accounts;
+      _accounts.forEach((value, accountId) => {
+        _state.accounts.get(accountId).amounts[_categoryId] = 0;
       });
       return _state;
     }
@@ -86,6 +91,10 @@ function categoriesReducer(state, action) {
     case 'deleteCategory': {
       const _state = {...state};
       _state.categories.delete(action.id);
+      const _accounts = _state.accounts;
+      _accounts.forEach((value, accountId) => {
+        delete _state.accounts.get(accountId).amounts[action.id];
+      });
       return _state;
     }
     case 'addCategoryAllocation': {
@@ -122,6 +131,32 @@ function categoriesReducer(state, action) {
           _state.categories.get(action.categoryId).allocations.has(action.allocationId)) {
         _state.categories.get(action.categoryId).allocations.delete(action.allocationId);
       }
+      return _state;
+    }
+    case 'changeAccountName': {
+      const _state = {...state};
+      if (_state.accounts.has(action.id)) {
+        _state.accounts.get(action.id).name = action.name;
+      }
+      return _state;
+    }
+    case 'changeAccountAmount': {
+      const _state = {...state};
+      if (_state.accounts.has(action.accountId)) {
+        _state.accounts.get(action.accountId).amounts[action.categoryId] = action.amount;
+      }
+      return _state;
+    }
+    case 'addAccount': {
+      const _state = {...state};
+      const _accountId = uuidv4();
+      _state.accounts.set(_accountId, {
+        name: "",
+        amounts: {}
+      });
+      Array.from(_state.categories).forEach(([categoryId, category], index) => {
+        _state.accounts.get(_accountId).amounts[categoryId] = 0;
+      });
       return _state;
     }
     default: {
