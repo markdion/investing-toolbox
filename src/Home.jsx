@@ -1,12 +1,27 @@
-import { Box } from "@mui/material";
+import { ThemeProvider } from "@emotion/react";
+import { Box, createTheme } from "@mui/material";
 import AmountsContainer from "./components/AmountsContainer";
 import CategoryContainer from "./components/CategoryContainer";
-import Section from "./components/Section";
+import DistributionContainer from "./components/DistributionContainer";
+import Section from "./components/shared/Section";
 import RootProvider from "./providers/RootProvider";
 
 export default function Home() {
 
+  const theme = createTheme({
+    palette: {
+      type: 'light',
+      primary: {
+        main: '#3f51b5',
+      },
+      secondary: {
+        main: '#f50057',
+      },
+    },
+  })
+
   return (
+    <ThemeProvider theme={theme}>
       <RootProvider>
         <Box sx={{
           display: "flex",
@@ -26,8 +41,10 @@ export default function Home() {
           <Section
             headerText={"What is your distribution goal?"}
             subHeaderText={"Define how much of each category you want in your portfolio."}
+            bodyComponent={<DistributionContainer />}
           />
         </Box>
       </RootProvider>
+    </ThemeProvider>
   );
 }

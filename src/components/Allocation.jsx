@@ -1,7 +1,7 @@
 import { Clear } from "@mui/icons-material";
 import { Box, Card, IconButton } from "@mui/material";
 import CategorySelect from "./CategorySelect";
-import PercentTextField from "./PercentTextField";
+import PercentTextField from "./shared/PercentTextField";
 
 export default function Allocation({ availableCategories, selectedCategory, value, onChangeCategorySelected, onChangeValue, onDelete }) {
 

@@ -1,6 +1,6 @@
 import { Box, Button, TextField, Typography } from "@mui/material";
 import { useRootReducer } from "../providers/RootProvider";
-import DollarTextField from "./DollarTextField";
+import DollarTextField from "./shared/DollarTextField";
 
 export default function AmountsContainer() {
 

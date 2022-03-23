@@ -1,6 +1,6 @@
 import { Box, Typography } from "@mui/material";
 import { useRootReducer } from "../providers/RootProvider";
-import PercentTextField from "./PercentTextField";
+import PercentTextField from "./shared/PercentTextField";
 
 export default function DistributionContainer() {
 
