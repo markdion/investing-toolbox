@@ -55,7 +55,13 @@ const initialState = {
         "5": 5000
       }
     }]
-  ])
+  ]),
+  distribution: {
+    "1": 40,
+    "2": 15,
+    "3": 25,
+    "5": 20
+  }
 };
 
 function categoriesReducer(state, action) {
@@ -157,6 +163,11 @@ function categoriesReducer(state, action) {
       Array.from(_state.categories).forEach(([categoryId, category], index) => {
         _state.accounts.get(_accountId).amounts[categoryId] = 0;
       });
+      return _state;
+    }
+    case 'changeDistribution': {
+      const _state = {...state};
+      _state.distribution[action.id] = action.amount;
       return _state;
     }
     default: {

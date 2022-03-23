@@ -8,9 +8,12 @@ export default function DollarTextField({ sx, label, value, onChange }) {
       label={label}
       type="number"
       value={value}
-      onChange={onChange}
+      onChange={(val) => onChange(parseFloat(val.target.value))}
       InputProps={{
         startAdornment: <InputAdornment position="start">$</InputAdornment>,
+      }}
+      inputProps={{
+        pattern: '[0-9.]*'
       }}
     />
   )

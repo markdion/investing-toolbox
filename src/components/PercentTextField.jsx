@@ -8,9 +8,12 @@ export default function PercentTextField({ sx, label, value, onChange }) {
       label={label}
       type="number"
       value={value}
-      onChange={onChange}
+      onChange={(val) => onChange(parseFloat(val.target.value))}
       InputProps={{
         endAdornment: <InputAdornment position="end">%</InputAdornment>,
+      }}
+      inputProps={{
+        pattern: '[0-9.]*'
       }}
     />
   )

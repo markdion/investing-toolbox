@@ -84,8 +84,8 @@ export default function Category({
               onChangeCategorySelected={(event) => {
                 dispatch({ type: "changeAllocationCategory", categoryId, allocationId, selectedCategoryId: event.target.value })
               }}
-              onChangeValue={(event) => {
-                dispatch({ type: "changeAllocationValue", categoryId, allocationId, value: event.target.value });
+              onChangeValue={(val) => {
+                dispatch({ type: "changeAllocationValue", categoryId, allocationId, value: val });
               }}
               onDelete={(event) => {
                 dispatch({ type: "deleteCategoryAllocation", categoryId, allocationId })

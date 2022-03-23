@@ -41,7 +41,8 @@ export default function AmountsContainer() {
               display: "flex",
               justifyContent: "center",
               width: "227px"
-            }}>
+            }}
+              key={accountId}>
               <Button sx={{ margin: "1rem 0", width: "fit-content" }}
                 variant="outlined"
                 onClick={() => {
@@ -105,8 +106,8 @@ export default function AmountsContainer() {
                   label={"Amount"}
                   width="20%"
                   value={account.amounts[categoryId]}
-                  onChange={(event) => {
-                    dispatch({ type: 'changeAccountAmount', accountId, categoryId, amount: event.target.value});
+                  onChange={(val) => {
+                    dispatch({ type: 'changeAccountAmount', accountId, categoryId, amount: val});
                   }}
                 />
               ))
