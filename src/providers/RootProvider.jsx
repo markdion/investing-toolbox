@@ -61,7 +61,8 @@ const initialState = {
     "2": 15,
     "3": 25,
     "5": 20
-  }
+  },
+  contribution: 0
 };
 
 function categoriesReducer(state, action) {
@@ -168,6 +169,11 @@ function categoriesReducer(state, action) {
     case 'changeDistribution': {
       const _state = {...state};
       _state.distribution[action.id] = action.amount;
+      return _state;
+    }
+    case 'changeContributionAmount': {
+      const _state = {...state};
+      _state.contribution = action.amount;
       return _state;
     }
     default: {

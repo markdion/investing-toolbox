@@ -104,7 +104,6 @@ export default function AmountsContainer() {
                 <DollarTextField
                   key={accountId}
                   label={"Amount"}
-                  width="20%"
                   value={account.amounts[categoryId]}
                   onChange={(val) => {
                     dispatch({ type: 'changeAccountAmount', accountId, categoryId, amount: val});

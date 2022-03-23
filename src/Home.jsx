@@ -2,6 +2,7 @@ import { ThemeProvider } from "@emotion/react";
 import { Box, createTheme } from "@mui/material";
 import AmountsContainer from "./components/AmountsContainer";
 import CategoryContainer from "./components/CategoryContainer";
+import ContributionContainer from "./components/ContributionContainer";
 import DistributionContainer from "./components/DistributionContainer";
 import Section from "./components/shared/Section";
 import RootProvider from "./providers/RootProvider";
@@ -42,6 +43,11 @@ export default function Home() {
             headerText={"What is your distribution goal?"}
             subHeaderText={"Define how much of each category you want in your portfolio."}
             bodyComponent={<DistributionContainer />}
+          />
+          <Section
+            headerText={"How much are you contributing?"}
+            subHeaderText={"Say how much you're contributing and see the optimal way to distribute your purchases across each category to move toward your distribution goal."}
+            bodyComponent={<ContributionContainer />}
           />
         </Box>
       </RootProvider>
