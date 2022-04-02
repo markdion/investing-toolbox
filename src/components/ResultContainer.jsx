@@ -86,6 +86,16 @@ export default function ResultContainer() {
     return fractionalDeviations;
   }
 
+  function isDistributionValid() {
+    let total = 0;
+    Object.values(state.distribution).forEach((value) => total += value);
+    return total === 100;
+  }
+
+  function disableCalculate() {
+    return !isDistributionValid() || !state.contribution || state.contribution <= 0;
+  }
+
   return (
     <Box sx={{
       display: "flex",
@@ -99,6 +109,7 @@ export default function ResultContainer() {
         sx={{ margin: "1rem 0", width: "fit-content" }}
         variant="contained"
         color="secondary"
+        disabled={disableCalculate()}
         onClick={() => calculate(state.contribution)}>
         Calculate
       </Button>

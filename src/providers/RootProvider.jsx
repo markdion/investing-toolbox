@@ -128,7 +128,7 @@ function categoriesReducer(state, action) {
       if (_state.categories.has(action.categoryId) &&
           _state.categories.get(action.categoryId).allocations.has(action.allocationId)) {
         const _allocation = _state.categories.get(action.categoryId).allocations.get(action.allocationId);
-        _allocation.percent = action.value;
+        _allocation.percent = (action.value && !isNaN(action.value)) ? action.value : 0;
       }
       return _state;
     }
@@ -150,7 +150,7 @@ function categoriesReducer(state, action) {
     case 'changeAccountAmount': {
       const _state = {...state};
       if (_state.accounts.has(action.accountId)) {
-        _state.accounts.get(action.accountId).amounts[action.categoryId] = action.amount;
+        _state.accounts.get(action.accountId).amounts[action.categoryId] = (action.amount && !isNaN(action.amount)) ? action.amount : 0;
       }
       return _state;
     }
@@ -173,12 +173,12 @@ function categoriesReducer(state, action) {
     }
     case 'changeDistribution': {
       const _state = {...state};
-      _state.distribution[action.id] = action.amount;
+      _state.distribution[action.id] = (action.amount && !isNaN(action.amount)) ? action.amount : 0;
       return _state;
     }
     case 'changeContributionAmount': {
       const _state = {...state};
-      _state.contribution = action.amount;
+      _state.contribution = (action.amount && !isNaN(action.amount)) ? action.amount : 0;
       return _state;
     }
     default: {

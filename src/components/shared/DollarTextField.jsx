@@ -7,7 +7,7 @@ export default function DollarTextField({ sx, label, value, onChange }) {
       sx={sx}
       label={label}
       type="number"
-      value={value}
+      value={Number(value).toString()}
       onChange={(val) => onChange(parseFloat(val.target.value))}
       InputProps={{
         startAdornment: <InputAdornment position="start">$</InputAdornment>,
