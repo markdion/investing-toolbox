@@ -166,6 +166,11 @@ function categoriesReducer(state, action) {
       });
       return _state;
     }
+    case 'removeAccount': {
+      const _state = {...state};
+      _state.accounts.delete(action.accountId);
+      return _state;
+    }
     case 'changeDistribution': {
       const _state = {...state};
       _state.distribution[action.id] = action.amount;
