@@ -98,6 +98,7 @@ export default function ResultContainer() {
       <Button
         sx={{ margin: "1rem 0", width: "fit-content" }}
         variant="contained"
+        color="secondary"
         onClick={() => calculate(state.contribution)}>
         Calculate
       </Button>

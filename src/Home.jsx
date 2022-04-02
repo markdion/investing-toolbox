@@ -1,4 +1,5 @@
-import { Box, createTheme, ThemeProvider } from "@mui/material";
+import { AppBar, Box, createTheme, ThemeProvider, Toolbar, Typography } from "@mui/material";
+import { grey } from "@mui/material/colors";
 import AmountsContainer from "./components/AmountsContainer";
 import CategoryContainer from "./components/CategoryContainer";
 import ContributionContainer from "./components/ContributionContainer";
@@ -9,21 +10,28 @@ import RootProvider from "./providers/RootProvider";
 
 export default function Home() {
 
-  const theme = createTheme({
-    palette: {
-      type: 'light',
-      primary: {
-        main: '#3f51b5',
+  const theme = createTheme(
+    {
+      palette: {
+        primary: {
+          main: '#bdbdbd',
+          light: '#efefef',
+          dark: '#8d8d8d',
+          contrastText: '#000000'
+        },
+        secondary: {
+          main: '#d50000',
+          light: '#ff5131',
+          dark: '#9b0000',
+          contrastText: '#ffffff'
+        },
+        background: {
+          default: grey[100],
+          paper: '#ffffff'
+        },
       },
-      secondary: {
-        main: '#ff3e00',
-      },
-      background: {
-        default: '#fafafa',
-        paper: '#ffffff'
-      },
-    },
-  })
+    }
+  )
 
   return (
     <ThemeProvider theme={theme}>
@@ -32,8 +40,16 @@ export default function Home() {
           bgcolor: "background.default",
           display: "flex",
           alignItems: "center",
-          flexDirection: "column"
+          flexDirection: "column",
+          pt: 2,
+          pb: 4
         }}>
+          <AppBar position="absolute">
+            <Toolbar>
+              <Typography variant="h5" color="inherit" noWrap>Lazy Portfolio Calculator</Typography>
+            </Toolbar>
+          </AppBar>
+          <Toolbar />
           <Section
             headerText={"What is in your portfolio?"}
             subHeaderText={"Define the categories you separate your investments into."}
@@ -59,6 +75,9 @@ export default function Home() {
             subHeaderText={"Below is the optimal way to distribute your contribution to work toward your distribution goals."}
             bodyComponent={<ResultContainer />}
           />
+          <Typography sx={{ pt: 2 }} variant="body2" color="text.secondary" align="center">
+            Made By Mark. Copyright © 2022.
+          </Typography>
         </Box>
       </RootProvider>
     </ThemeProvider>

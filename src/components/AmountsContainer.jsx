@@ -29,6 +29,7 @@ export default function AmountsContainer() {
         }}>
           <Button sx={{ margin: "1rem 0", width: "fit-content" }}
             variant="contained"
+            color="secondary"
             onClick={() => {
               dispatch({ type: 'addAccount' });
             }}>
@@ -45,6 +46,7 @@ export default function AmountsContainer() {
               key={accountId}>
               <Button sx={{ margin: "1rem 0", width: "fit-content" }}
                 variant="outlined"
+                color="secondary"
                 onClick={() => {
                   dispatch({ type: 'removeAccount', accountId});
                 }}>
@@ -71,7 +73,7 @@ export default function AmountsContainer() {
                 alignItems: "flex-start",
                 flexDirection: "column",
                 gap: "1rem",
-                width: "227px"
+                width: "244px"
               }}
               key={accountId}
             >

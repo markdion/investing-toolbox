@@ -16,7 +16,7 @@ export default function Section({
       padding: "1rem",
       width: "60%"
     }}>
-      <Typography variant="h4" align="left">{headerText}</Typography>
+      <Typography variant="h5" align="left">{headerText}</Typography>
       <Typography variant="subtitle1" align="left">{subHeaderText}</Typography>
       {bodyComponent}
     </Paper>

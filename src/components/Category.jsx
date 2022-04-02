@@ -41,6 +41,7 @@ export default function Category({
             sx={{ margin: "1rem" }}
             control={
               <Switch
+                color="secondary"
                 checked={category.isSuper}
                 onChange={(event) => {
                   dispatch({ type: "toggleSuper", id: categoryId, isSuper: event.target.checked });
@@ -52,6 +53,7 @@ export default function Category({
             <Button
               sx={{ margin: "1rem", width: "fit-content" }}
               variant="outlined"
+              color="secondary"
               onClick={(event) => {
                 dispatch({ type: "addCategoryAllocation", id: categoryId });
               }}>
