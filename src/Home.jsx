@@ -1,4 +1,5 @@
-import { AppBar, Box, createTheme, ThemeProvider, Toolbar, Typography } from "@mui/material";
+import { AutoGraph } from "@mui/icons-material";
+import { AppBar, Box, createTheme, Icon, ThemeProvider, Toolbar, Typography } from "@mui/material";
 import { grey } from "@mui/material/colors";
 import AmountsContainer from "./components/AmountsContainer";
 import CategoryContainer from "./components/CategoryContainer";
@@ -38,6 +39,7 @@ export default function Home() {
       <RootProvider>
         <Box sx={{
           bgcolor: "background.default",
+          minHeight: "100vh",
           display: "flex",
           alignItems: "center",
           flexDirection: "column",
@@ -46,14 +48,24 @@ export default function Home() {
         }}>
           <AppBar position="absolute">
             <Toolbar>
+              <AutoGraph color="secondary" sx={{ fontSize: 35, marginRight: "1rem" }} />
               <Typography variant="h5" color="inherit" noWrap>Lazy Portfolio Calculator</Typography>
             </Toolbar>
           </AppBar>
           <Toolbar />
+          <Box sx={{
+            width: "60%"
+          }}>
+            <Typography align="left" paragraph="true">A <b>Lazy Portfolio</b> is a collection of investments that requires very little maintenance. It's the typical passive investing strategy, for long-term investors, with time horizons of more than 10 years.</Typography>
+            <Typography align="left" paragraph="true"><b>Dollar-cost averaging (DCA)</b> is an investment strategy in which an investor divides up the total amount to be invested across periodic purchases of a target asset in an effort to reduce the impact of volatility on the overall purchase. The purchases occur regardless of the asset's price and at regular intervals.</Typography>
+            <Typography align="left" paragraph="true">A common practice when using these two ideas is <b>rebalancing</b>. A person might periodically sell over-weighted (overpriced) assets and buy under-weighted ones in order to try to maintain their target allocations. This can be costly in fees and taxable gains, and you sometimes end up selling assets only to buy them again at a higher price.</Typography>
+            <Typography align="left" paragraph="true">You can avoid these issues while also being <i>even lazier</i>. Instead of adjusting your existing investments, only adjust the allocations of your DCA contributions. <b>This calculator will help you purchase under-weighted assets optimally using your contribution amount to try to get you as close as possible to your target allocations.</b></Typography>
+          </Box>
           <Section
             headerText={"What is in your portfolio?"}
             subHeaderText={"Define the categories you separate your investments into."}
             bodyComponent={<CategoryContainer />}
+            accordionOpen={true}
           />
           <Section
             headerText={"How much is in your portfolio?"}

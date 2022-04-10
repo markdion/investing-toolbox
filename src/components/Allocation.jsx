@@ -7,10 +7,12 @@ export default function Allocation({ availableCategories, selectedCategory, valu
 
   return (
     <Card sx={{
-      display: "flex",
-      flexDirection: "column",
-      padding: "0 1rem 1rem 1rem"
-    }}>
+        display: "flex",
+        flexDirection: "column",
+        padding: "0 1rem 1rem 1rem"
+      }}
+      variant="outlined"
+    >
       <Box sx={{
         display: "flex",
         flexDirection: "column",

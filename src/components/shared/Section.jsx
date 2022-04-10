@@ -1,24 +1,34 @@
-import { Paper, Typography } from "@mui/material";
+import { Accordion, AccordionDetails, AccordionSummary, Paper, Typography } from "@mui/material";
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import { useState } from "react";
 
 export default function Section({
+  accordionOpen,
   headerText,
   subHeaderText,
   bodyComponent }) {
 
-  return (
-    <Paper sx={{
+  const [expanded, setExpanded] = useState(accordionOpen ?? false);
 
-      display: "flex",
-      justifyContent: "flex-start",
-      flexDirection: "column",
-      alignItems: "flex-start",
-      margin: "1rem",
-      padding: "1rem",
-      width: "60%"
-    }}>
-      <Typography variant="h5" align="left">{headerText}</Typography>
-      <Typography variant="subtitle1" align="left">{subHeaderText}</Typography>
-      {bodyComponent}
-    </Paper>
+  return (
+    <Accordion sx={{
+        width: "60%"
+      }}
+      square={true}
+      expanded={expanded}
+      onChange={(event, expanded) => setExpanded(expanded)}
+    >
+      <AccordionSummary sx={{
+          bgcolor: "primary.light"
+        }}
+        expandIcon={<ExpandMoreIcon />}
+      >
+        <Typography variant="h6" align="left">{headerText}</Typography>
+      </AccordionSummary>
+      <AccordionDetails>
+        <Typography variant="subtitle1" align="left">{subHeaderText}</Typography>
+        {bodyComponent}
+      </AccordionDetails>
+    </Accordion>
   );
 }

@@ -12,12 +12,14 @@ export default function Category({
 
   return (
     <Card sx={{
-      display: "flex",
-      justifyContent: "flex-start",
-      flexDirection: "column",
-      alignItems: "flex-start",
-      margin: "1rem 0"
-    }}>
+        display: "flex",
+        justifyContent: "flex-start",
+        flexDirection: "column",
+        alignItems: "flex-start",
+        margin: "1rem 0"
+      }}
+      variant="outlined"
+    >
       <Box sx={{
         display: "flex",
         justifyContent: "space-between",
