@@ -6,6 +6,23 @@ export default function AmountsContainer() {
 
   const { state, dispatch } = useRootReducer();
 
+  function percentOfTotal(categoryId) {
+    let total = 0;
+    let categoryTotal = 0;
+    Array.from(state.accounts).forEach(([accountId, account]) => {
+      Object.entries(account.amounts).forEach(([catId, amount]) => {
+        total += amount;
+        if (catId === categoryId) {
+          categoryTotal += amount;
+        }
+      });
+    });
+    if (total === 0) {
+      return "0.00%";
+    }
+    return (categoryTotal / total * 100).toFixed(2).toString() + "%";
+  };
+
   return (
     <Box sx={{
       display: "flex",
@@ -113,6 +130,7 @@ export default function AmountsContainer() {
                 />
               ))
             }
+            <Typography width="20%" align="right">{percentOfTotal(categoryId)}</Typography>
           </Box>
         ))
       }

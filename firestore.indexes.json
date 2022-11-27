@@ -1,0 +1,11 @@
+{
+  // Required, specify compound indexes
+  "indexes": [
+
+  ],
+
+  // Optional, disable indexes or enable single-field collection group indexes
+  "fieldOverrides": [
+
+  ]
+}

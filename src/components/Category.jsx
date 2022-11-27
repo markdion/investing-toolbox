@@ -1,5 +1,6 @@
 import { Clear } from "@mui/icons-material";
-import { Box, Button, Card, FormControlLabel, IconButton, Switch, TextField } from "@mui/material";
+import { Alert, Box, Button, Card, FormControlLabel, IconButton, Switch, TextField } from "@mui/material";
+import { calculateAllocationTotal } from "../utils/allocationUtils";
 import { useRootReducer } from "../providers/RootProvider";
 import Allocation from "./Allocation";
 
@@ -71,32 +72,37 @@ export default function Category({
         </IconButton>
       </Box>
       {category.isSuper && category.allocations && category.allocations.size > 0 &&
-        <Box sx={{
-          display: "flex",
-          justifyContent: "flex-start",
-          alignItems: "center",
-          margin: "1rem",
-          flexWrap: "wrap",
-          gap: "1rem"
-        }}>
-          {Array.from(category.allocations).map(([allocationId, allocation], index) => (
-            <Allocation
-              key={allocationId}
-              availableCategories={allCategories}
-              selectedCategory={allocation.categoryId}
-              value={allocation.percent}
-              onChangeCategorySelected={(event) => {
-                dispatch({ type: "changeAllocationCategory", categoryId, allocationId, selectedCategoryId: event.target.value })
-              }}
-              onChangeValue={(val) => {
-                dispatch({ type: "changeAllocationValue", categoryId, allocationId, value: val });
-              }}
-              onDelete={(event) => {
-                dispatch({ type: "deleteCategoryAllocation", categoryId, allocationId })
-              }}
-            />
-          ))}
-        </Box>}
+        <div>
+          {(calculateAllocationTotal(category.allocations) !== 100) &&
+            <Alert sx={{marginX: "1rem"}} severity="error">The allocations must total 100%</Alert>
+          }
+          <Box sx={{
+            display: "flex",
+            justifyContent: "flex-start",
+            alignItems: "center",
+            margin: "1rem",
+            flexWrap: "wrap",
+            gap: "1rem"
+          }}>
+            {Array.from(category.allocations).map(([allocationId, allocation], index) => (
+              <Allocation
+                key={allocationId}
+                availableCategories={allCategories}
+                selectedCategory={allocation.categoryId}
+                value={allocation.percent}
+                onChangeCategorySelected={(event) => {
+                  dispatch({ type: "changeAllocationCategory", categoryId, allocationId, selectedCategoryId: event.target.value })
+                }}
+                onChangeValue={(val) => {
+                  dispatch({ type: "changeAllocationValue", categoryId, allocationId, value: val });
+                }}
+                onDelete={(event) => {
+                  dispatch({ type: "deleteCategoryAllocation", categoryId, allocationId })
+                }}
+              />
+            ))}
+          </Box>
+        </div>}
     </Card>
   );
 }

@@ -21,24 +21,33 @@ const initialState = {
       allocations: new Map()
     }],
     ["4", {
+      name: "Emerging Markets",
+      isSuper: false,
+      allocations: new Map()
+    }],
+    ["5", {
       name: "Total Market ETF",
       isSuper: true,
       allocations: new Map([
         ["11", {
           categoryId: "1",
-          percent: 40
+          percent: 47
         }],
         ["22", {
           categoryId: "2",
-          percent: 30
+          percent: 25
         }],
         ["33", {
           categoryId: "3",
-          percent: 30
+          percent: 23
+        }],
+        ["44", {
+          categoryId: "4",
+          percent: 5
         }],
       ])
     }],
-    ["5", {
+    ["6", {
       name: "Bonds",
       isSuper: false,
       allocations: new Map()
@@ -51,16 +60,18 @@ const initialState = {
         "1": 10000,
         "2": 5000,
         "3": 4000,
-        "4": 8000,
-        "5": 5000
+        "4": 3000,
+        "5": 5000,
+        "6": 5000
       }
     }]
   ]),
   distribution: {
-    "1": 40,
+    "1": 45,
     "2": 15,
-    "3": 25,
-    "5": 20
+    "3": 15,
+    "4": 5,
+    "6": 20
   },
   contribution: 0
 };

@@ -1,5 +1,6 @@
 import { Box, Button, Typography } from "@mui/material";
 import { useState } from "react";
+import { isAllocationsValid } from "../utils/allocationUtils";
 import { useRootReducer } from "../providers/RootProvider";
 
 export default function ResultContainer() {
@@ -23,6 +24,9 @@ export default function ResultContainer() {
         }
         if (category.isSuper) {
           for (const allocation of category.allocations.values()) {
+            if (!(allocation.categoryId in actualCategoriesAmounts)) {
+              actualCategoriesAmounts[allocation.categoryId] = 0;
+            }
             actualCategoriesAmounts[allocation.categoryId] += amount * (allocation.percent / 100);
           }
         } else {
@@ -32,7 +36,11 @@ export default function ResultContainer() {
       }
     }
     let totalAmountAfterContribution = totalAmount + contribution;
+    let actualCategoriesPercentages = Object.entries(actualCategoriesAmounts).map(([categoryId, amount]) => {
+      return [categoryId, amount / totalAmount * 100];
+    })
     console.log(`Actual Distribution: ${JSON.stringify(actualCategoriesAmounts)}.`);
+    console.log(`Actual Distribution %: ${JSON.stringify(actualCategoriesPercentages)}`);
     console.log(`Total Amount: ${totalAmount}.`);
     console.log(`Total Amount with Contribution: ${totalAmountAfterContribution}.`);
     let targetCategoriesAmounts = {};
@@ -93,7 +101,7 @@ export default function ResultContainer() {
   }
 
   function disableCalculate() {
-    return !isDistributionValid() || !state.contribution || state.contribution <= 0;
+    return !state.contribution || state.contribution <= 0 || !isDistributionValid() || !isAllocationsValid(state.categories);
   }
 
   return (
